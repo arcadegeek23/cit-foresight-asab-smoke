@@ -1,5 +1,6 @@
 import express from 'express';
 import { health } from './health.js';
+import { getVersionInfo } from './version.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,6 +9,12 @@ const PORT = process.env.PORT || 3000;
 app.get('/healthz', (req, res) => {
   const healthResponse = health();
   res.json(healthResponse);
+});
+
+// Version info endpoint
+app.get('/version', (req, res) => {
+  const versionInfo = getVersionInfo();
+  res.json(versionInfo);
 });
 
 // Basic root endpoint
